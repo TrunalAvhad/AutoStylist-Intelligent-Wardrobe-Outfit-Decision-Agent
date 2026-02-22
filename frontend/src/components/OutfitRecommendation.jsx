@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ImageCard from './ImageCard';
+import RecommendationCard from './RecommendationCard';
 import '../styles/OutfitRecommendation.css';
 import { sendFeedback } from '../services/api';
 
@@ -91,29 +92,18 @@ export default function OutfitRecommendation({ recommendations, context, onFeedb
     );
   };
 
-  const renderOutfitItems = (outfit) => {
+  const renderOutfitItems = (outfit, title) => {
     if (!outfit) return null;
 
-    if (!outfit.bottom) {
-      // Single piece outfit (like a Saree or Lehenga)
-      return (
-        <div className="outfit-items single-piece">
-          <div className="outfit-item">
-            <ImageCard image={outfit.top?.image_path} title="Full Body Outfit" />
-          </div>
-        </div>
-      );
-    }
+    const data = {
+      top: outfit.top?.image_path,
+      bottom: outfit.bottom?.image_path,
+      score: outfit.score || 'Highly Recommended'
+    };
 
-    // Two piece outfit (Top + Bottom)
     return (
-      <div className="outfit-items">
-        <div className="outfit-item">
-          <ImageCard image={outfit.top?.image_path} title="Top" />
-        </div>
-        <div className="outfit-item">
-          <ImageCard image={outfit.bottom?.image_path} title="Bottom" />
-        </div>
+      <div className="outfit-items-container" style={{ display: 'flex', justifyContent: 'center' }}>
+        <RecommendationCard title={title} data={data} />
       </div>
     );
   };
@@ -166,7 +156,7 @@ export default function OutfitRecommendation({ recommendations, context, onFeedb
         {selectedOutfit === 'best' && recommendations.best && (
           <div className="outfit-group">
             <h4 className="outfit-title">Best Match Outfit</h4>
-            {renderOutfitItems(recommendations.best)}
+            {renderOutfitItems(recommendations.best, "Best Match")}
             {renderExtras(recommendations.best.extras)}
             <div className="feedback-buttons">
               <button
@@ -197,7 +187,7 @@ export default function OutfitRecommendation({ recommendations, context, onFeedb
         {selectedOutfit === 'medium' && recommendations.medium && (
           <div className="outfit-group">
             <h4 className="outfit-title">Good Option</h4>
-            {renderOutfitItems(recommendations.medium)}
+            {renderOutfitItems(recommendations.medium, "Good Option")}
             {renderExtras(recommendations.medium.extras)}
             <div className="feedback-buttons">
               <button
@@ -228,7 +218,7 @@ export default function OutfitRecommendation({ recommendations, context, onFeedb
         {selectedOutfit === 'average' && recommendations.average && (
           <div className="outfit-group">
             <h4 className="outfit-title">Alternative Outfit</h4>
-            {renderOutfitItems(recommendations.average)}
+            {renderOutfitItems(recommendations.average, "Alternative")}
             {renderExtras(recommendations.average.extras)}
             <div className="feedback-buttons">
               <button
