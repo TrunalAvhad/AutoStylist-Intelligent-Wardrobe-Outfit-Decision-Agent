@@ -17,7 +17,7 @@ import os
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://autostylist-frontend.onrender.com",
+    "https://automaticstylist-frontend.onrender.com",
 ]
 
 # Add production frontend URL if set
@@ -65,4 +65,5 @@ if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 10000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
 
