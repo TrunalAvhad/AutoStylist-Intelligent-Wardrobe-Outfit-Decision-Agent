@@ -1,82 +1,95 @@
+/* Recommendations.css */
 .recommendations-page {
   flex: 1;
-  padding: 2rem;
+  padding: 3rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  animation: fadeIn 0.6s ease-out;
 }
 
 .recommendations-container {
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: var(--shadow-md);
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-glass), var(--shadow-xl);
+  border: 1px solid var(--border-light);
 }
 
 .recommendations-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .recommendations-header h1 {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
 }
 
 .occasion-selector {
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .occasion-selector h2 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
 }
 
 .occasions-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
 .occasion-option {
   background: white;
   border: 2px solid var(--border-color);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .occasion-option:hover {
-  border-color: var(--primary-color);
+  border-color: var(--primary-light);
   box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
 .occasion-option.selected {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(225, 29, 72, 0.05));
   border-color: var(--primary-color);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--primary-color);
+  transform: translateY(-4px);
 }
 
 .occasion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .occasion-label {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .occasion-radio {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
   accent-color: var(--primary-color);
 }
@@ -85,30 +98,29 @@
   color: var(--text-secondary);
   margin: 0;
   font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .get-recommendations-btn-container {
   text-align: center;
+  margin-top: 3rem;
   margin-bottom: 2rem;
-}
-
-.btn-large {
-  padding: 1rem 3rem;
-  font-size: 1.1rem;
 }
 
 .placeholder {
   text-align: center;
-  padding: 3rem;
+  padding: 4rem 2rem;
   color: var(--text-secondary);
-  background: #f9fafb;
-  border-radius: 0.75rem;
-  border: 2px dashed var(--border-color);
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: var(--radius-lg);
+  border: 2px dashed rgba(203, 213, 225, 0.8);
+  margin-top: 3rem;
 }
 
 .placeholder p {
   margin: 0;
   font-size: 1.1rem;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
@@ -117,29 +129,14 @@
   }
 
   .recommendations-container {
-    padding: 1rem;
-  }
-
-  .occasions-list {
-    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
   }
 
   .recommendations-header h1 {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
   }
 
   .btn-large {
     width: 100%;
-    padding: 1rem 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .recommendations-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .recommendations-header p {
-    font-size: 0.95rem;
   }
 }
