@@ -3,7 +3,7 @@ services:
   # BACKEND SERVICE - FastAPI + Python
   # ============================================
   - type: web
-    name: autostylist-backend
+    name: automaticstylist-backend
     env: python
     rootDir: backend
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
@@ -33,7 +33,7 @@ services:
   # FRONTEND SERVICE - React + Vite
   # ============================================
   - type: static_site
-    name: autostylist-frontend
+    name: automaticstylist-frontend
     env: node
     rootDir: frontend
     buildCommand: npm install && npm run build
