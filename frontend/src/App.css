@@ -12,17 +12,27 @@
 }
 
 .footer {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-secondary);
   text-align: center;
-  padding: 2rem;
-  margin-top: 4rem;
-  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem 1rem;
+  margin-top: auto;
+  border-top: 1px solid var(--border-light);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.02);
+  transition: var(--transition);
 }
 
 .footer p {
   margin: 0;
   font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.footer:hover {
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {

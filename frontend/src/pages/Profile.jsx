@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getMe } from '../services/api';
-import '../styles/Upload.css';
+import '../styles/Profile.css';
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -12,20 +12,35 @@ export default function Profile() {
       .catch(e => setError(e.detail || e.error || 'Failed to load profile'));
   }, []);
 
-  if (error) return <div className="upload-page"><h2>Profile</h2><div className="error">{error}</div></div>;
+  if (error) return <div className="profile-page"><div className="profile-container"><div className="error">{error}</div></div></div>;
+
+  const initials = user?.full_name ? user.full_name.split(' ').map(n => n[0]).slice(0, 2).join('') : 'AU';
 
   return (
-    <div className="upload-page">
-      <h2>Profile</h2>
-      {user ? (
-        <div className="profile-card">
-          <p><strong>Name:</strong> {user.full_name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Member since:</strong> {new Date(user.created_at).toLocaleString()}</p>
-        </div>
-      ) : (
-        <div>Loading...</div>
-      )}
+    <div className="profile-page">
+      <div className="profile-container">
+        {user ? (
+          <>
+            <div className="profile-header">
+              <div className="profile-avatar">{initials}</div>
+              <h2>{user.full_name}</h2>
+              <p className="text-secondary">Member since {new Date(user.created_at).toLocaleDateString()}</p>
+            </div>
+            <div className="profile-details">
+              <div className="profile-detail-item">
+                <span className="label">Full Name</span>
+                <span className="value">{user.full_name}</span>
+              </div>
+              <div className="profile-detail-item">
+                <span className="label">Email Address</span>
+                <span className="value">{user.email}</span>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="loading">Loading Profile...</div>
+        )}
+      </div>
     </div>
   );
 }
